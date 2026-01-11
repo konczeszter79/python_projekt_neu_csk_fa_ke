@@ -349,6 +349,112 @@ class LabirintusJatek:
                 printszöveg("Hibás kódot adtál meg.")
                 printszöveg("Hirtelen mintha valami megragadna. Majd arra eszmélsz, hogy visszakerültél az előző szobába a képhez")
                 self.kepvizsgalat()
+    def MegoldasSzoba(self):
+            printszöveg("\n\nEgy sötét folyosón találod magad, amelyet csak az előző szobából áradó fény világít meg. A túlsó végén egyetlen ajtó áll. A falon egy festmény lóg, amely a gonosz varázslót ábrázolja. az ajtó mellett egy fonnyadt szobanövény árválkodik.")        
+            printszöveg("\n\n1. Megvizsgálod a festményt")
+            printszöveg("\n\n2. Megvizsgálod a szobanövényt")
+            printszöveg("\n\n3. Átmész az ajtón")
+            printszöveg("\n\n4. Visszamész az előző szobába")
+            válasz = formázott_input("\n\nMelyiket választod? (1, 2, 3, vagy 4)")
 
+            if válasz == '1':
+                self.onarckep()
+            elif válasz == '2':
+                self.noveny()
+            elif válasz == '3':
+                self.HaloSzoba()
+            elif válasz == 4:
+                pass #ide beírni az előző szobát
+            else:
+                printszöveg("\n\nHelytelen választás. Próbáld újra.")
+                self.MegoldasSzoba()
+    def onarckep(self):
+            printszöveg("\n\nA festmény egy díszes keretbe van foglalva, ám erősen amatőr munka. Gyanítod, hogy önarckép. Megfordítod, és észreveszed, hogy a hátuljára a következő szám van firkálva: 172. Ez később még hasznos lehet!")  
+            formázott_input("\n\nNyomj entert a viszatéréshez a szobába")  
+            tárgyak.append("172")
+            self.MegoldasSzoba()
+    def noveny(self):
+        printszöveg("\n\nA szobanövény fénykorában egy fikusz cserje lehetett, mára alig egy pár szomorúan csüngő levél maradt rajta. A földje teljesen száraz. Nem árul el neked semmi használhatót, azon kívül, hogy a varázsló nem csak embereket szeret kínozni.")
+        formázott_input("\n\nNyomj entert a viszatéréshez a szobába")  
+        self.MegoldasSzoba()
+
+    def HaloSzoba(self):
+            printszöveg("\n\nEgy hálószobába lépsz, feltehetőleg abba amiben a gonosz varázsló maga alszik. a fal mellett egy baldachinos ágyat látsz, rajta egy kupac párnával és meglehetősen ronda plüssállatokkal, amelyek feltehetőleg azokat entitásokat ábrázolják, amelyeknek fogvatartód feláldozni készült téged. s szoba túlsó felén egy öltözőasztal és ruhásszekrény áll.")        
+            printszöveg("\n\n1. Megvizsgálod az ágyat")
+            printszöveg("\n\n2. Megvizsgálod a ruhásszekrényt")
+            printszöveg("\n\n3. Visszamész az előző szobába")
+            válasz = formázott_input("\n\nMelyiket választod? (1, 2, vagy 3)")
+
+            if válasz == '1':
+                self.agy()
+            elif válasz == '2':
+                self.ruhasszekreny()
+            elif válasz == '3':
+                self.MegoldasSzoba()
+            else:
+                printszöveg("\n\nHelytelen választás. Próbáld újra.")
+                self.HaloSzoba()
+    def agy(self):
+        printszöveg("\n\nA plüss entitások közelről még csúnyábbak, és biztos vagy benne, hogy amikor rájuk nézel, visszanéznek rád. Inkább nem mész közelebb.")
+        formázott_input("\n\nNyomj entert a viszatéréshez a szobába")  
+        self.HaloSzoba()
+    def ruhasszekreny(self):
+        printszöveg("\n\nA szekrény teli van teljesen egyforma varázslói köpenyekkel és sipkákkal. Félrehajtod őket, és a szekrény hátulján egy rejtett ajtót fedezel fel. Kinyitod?")        
+        printszöveg("\n\n1. Igen")
+        printszöveg("\n\n2. Nem")
+        válasz = formázott_input("\n\nMelyiket választod? (1, vagy 2)")
+
+        if válasz == '1' and "formakulcs" in tárgyak:
+                formázott_input("Az előzőleg megtalált kulccsal kinyitod az ajtót, és miután átverekedted magad a köpönyegeken, átlépsz rajta. Nyomj entert a folytatáshoz.")
+                self.OrosSzoba()
+        if válasz == '1' and "formakulcs" not in tárgyak:
+                formázott_input("Az ajtó zárva van. Kulcsra lesz szükséged ahhoz hogy kinyisd. Nyomj entert a visszalépéshez.")
+                self.HaloSzoba()
+        elif válasz == '2':
+                self.HaloSzoba()
+        else:
+                printszöveg("\n\nHelytelen választás. Próbáld újra.")
+                self.ruhasszekrenyszekreny()
+
+    def OrosSzoba(self):
+            printszöveg("\n\nEgy üres szobába lépsz, amelynek túlsó végén egy aggresszív kinézetű kőszörny áll mozdulatlanul.")        
+            printszöveg("\n\n1. Megközelíted a szörnyet")
+            printszöveg("\n\n2. Visszamész az előző szobába")
+            válasz = formázott_input("\n\nMelyiket választod? (1, vagy 2)")
+
+            if válasz == '1':
+                self.szorny()
+            elif válasz == '2':
+                self.HaloSzoba()
+            else:
+                printszöveg("\n\nHelytelen választás. Próbáld újra.")
+                self.OrosSzoba()
+
+    def szorny(self):
+        printszöveg("\n\nA szörny életre kel, és mennydörgő hangon így szól:\n'Egy hajó 200 km/órás sebességgel száguld a tengeren. Legénysége 30 fő, ebből 10 tengeri szörny, 5 gyíkember. A hajó színe kék. Hány éves a kapitány?'")        
+        printszöveg("\n\n1. Ööh, 53?")
+        printszöveg("\n\n2. Mi?")
+        if "172" in tárgyak:
+            printszöveg("\n\n3. 172!")
+        válasz = formázott_input("\n\nMelyiket választod? (1, 2, vagy 3)")     
+
+        if válasz == '1' or válasz == '2':
+            printszöveg("Helytelen válasz! - mennydörgi a kőszörny, majd felkap és áthajít az ajtón amin bejöttél, kereszülbucskáztatva a szekrénnyi köpönyegen. Nézz körül jobban a labirintusban hogy megtaláld a helyes választ!")
+            formázott_input("Nyomj entert a feltápászkodáshoz.")
+            self.HaloSzoba()
+        elif válasz == '3' and "172" in tárgyak:
+            printszöveg("Helyes válasz! - mennydörgi a kőszörny, majd félreáll, felfedve egy ajtót amely kinyílik amint közelebb érsz. Átlépsz rajta.")
+            formázott_input("Nyomj entert a folytatáshoz.")
+            self.kijarat()
+        else:
+            printszöveg("\n\nHelytelen választás. Próbáld újra.")
+            self.szorny()
+
+    def kijarat(self):
+        printszöveg("Az ajtón átlépve friss levegőt érzel, és kora nyári esti napfény süti az arcod. Kijutottál a toronyból!")
+        válasz = formázott_input("\n1.Elfutsz a naplementébe\n2.Győzedelmesen felmutatod a középső ujjad a torony felé, majd elfutsz a naplementébe\n")
+
+        if válasz == True:
+            printszöveg("Szabad vagy!\nVége a játéknak!")
 
 jatek = LabirintusJatek()
