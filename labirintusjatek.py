@@ -186,6 +186,169 @@ class LabirintusJatek:
             input()
             self.lada()
 
+    def kovszakasz(self):
+        printszöveg("Miután nem volt más választásod a sötét szobába léptél be. Az előző szobából beáradó fény alig világítja meg a szobát az egyik falon halványan felsejlik valami, de amint teljesen átlépsz a szobába a mögötted lévő ajtó becsukódik és nem tudod kinyitni. Ahhoz, hogy megtaláld a kiutat szükséged van fényforrásra.")
+        self.sotetszoba()
+    def sotetszoba(self):
+        printszöveg("1. Elkezdesz a falon tapogatózni.")
+        printszöveg("2. Elkezdesz kutakodni.")
+        válasz = formázott_input("Melyiket választod? (1 vagy 2) ")
+        self.sotetszoba_válasz(válasz)
+    
+    def sotetszoba_válasz(self, válasz):
+        if válasz == "1":
+            self.falkutatas()
+        elif válasz == "2":
+            self.kutakodas()
+        else:
+            printszöveg("Helytelen választás. Próbáld újra.")
+            self.sotetszoba()
+
+    def falkutatas(self):
+        printszöveg("\nA fal hideg és érdes. Rúnák vannak rajta, de fény nélkül nem tudod elolvasni.")
+        formázott_input("Nyomj Entert a visszalépéshez...")
+        self.sotetszoba()
+    
+    def kutakodas(self):
+        printszöveg("Ahogy a sötét szobába kutakodsz a szoba közepén belerúgsz valamibe. Kínok között próbálod visszafojtani a feltörő szitkokat. Miután sikerül az önuralmadat visszaszerezni, elkezded végig tapogatni, hogy minek ütköztél neki. Rájössz, hogy egy ládába rúgtál bele. Megpróbálod kinyitni és szerencséd van mert nincs lezárva. A ládát átkutatva egy gömb alakú kristályra akadsz, ami a kezed melegétől fényesen kezd ragyogni. Ahogy a fény beteríti a szobát a falon rúnák válnak láthatóvá és két ajtó rajzolódik ki jobbra és előtted.")
+        tárgyak.append("fénykristály")
+        self.sotetszoba_lehetosegek()
+
+    def sotetszoba_lehetosegek(self):
+        printszöveg("1. Elolvasod a rúnákat.")
+        printszöveg("2. Előtted lévő ajtó kinyítása.")
+        printszöveg("3. Jobb oldali ajtó kinyítása.")
+        válasz = formázott_input("Melyiket választod? (1, 2 vagy 3) ")
+        
+        if válasz == "1":
+            self.runaolvasas()
+        elif válasz == "2":
+            self.szembeajto()
+        elif válasz == "3":
+            self.jobbajto()
+
+    def runaolvasas(self):
+        printszöveg("Örülsz, mert a rúna olvasást mindig jobban szeretted az iskolába, mint a latint. Az alábbi szöveg látható a falon: ")
+        printszöveg("ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟᚼᚻᚯᚱᛝᛡ")
+        printszöveg("Miután elolvastad rájössz, hogy ez egy találós kérdés. Ami így szól: Varázsbotja nincsen neki, de a tájat eltünteti. Mikor leszáll, azt sem tudod, merre van az orrod.")
+        self.talaloskerdes()
+    
+    def talaloskerdes(self):
+        printszöveg("1. Hóvihar")
+        printszöveg("2. Köd")
+        printszöveg("3. Sűrű erdő")
+        tipp = formázott_input("Mi az? ")
+
+        if tipp == "2":
+            printszöveg("A válaszod helyes. Jegyez meg hátha még jól jön.")
+            self.sotetszoba_lehetosegek()
+            tárgyak.append('köd')
+        elif tipp == "1" or "3":
+            printszöveg("Nem találtad el.")
+        else:
+            printszöveg("Helytelen választás. Próbáld újra.")
+
+        while tipp != "2":
+            tipp = input("Mi az? ")
+        if tipp == "2":
+            printszöveg("A válaszod helyes. Jegyez meg hátha még jól jön.")
+            tárgyak.append('köd')
+            self.sotetszoba_lehetosegek()
+        elif tipp == "1" or "3":
+            printszöveg("Nem találtad el.")
+        else:
+            printszöveg("Helytelen választás. Próbáld újra.")
+
+    def szembeajto(self):
+        printszöveg("Amint átléped a küszöböt az ajtó becsukódik mögötted. Azonnal érzed, hogy valami nincs rendben: a levegő súlyos és szinte mozogni látszik. A falak mentén fekete köd gomolyog, amely néha arcokat formál -mintha réges-rég elveszett lelkek próbálnának figyelmeztetni. A szoba közepe üres, nincsenek tárgyak, nincsen más kijárat")
+        printszöveg("A suttogások halkan, de tisztán hallatszanak: Vissza kell fordulnod… Ez az út nem neked való… A fény útja máshol vezet…")
+        printszöveg("Ahogy tovább lépsz, a padló alatt fekete repedések nyílnak meg, mintha az árnyak széttépnék a teret. Egyetlen út van: Vissza az előző szobába.")
+        self.sotetszoba_lehetosegek()    
+
+    def jobbajto(self):
+        printszöveg("Belépsz a szobába, amelyet halvány mágikus fényvilág tölt be. ")
+        printszöveg("Két ajtót látsz: Az egyik zárva van, rajta egy nagy vaslakat. A másik ajtó lassan hangos nyikorgással kitárul.")
+        printszöveg("Mögötte a semmi… vagy valami sokkal rosszabb, de úgy tűnik, ez vezet tovább. A szobába észreveszel egy képet, ami mintha furcsán állna.")
+        self.hetedikszoba()
+    
+    def hetedikszoba(self):
+        printszöveg("1. Megvizsgálod a képet")
+        printszöveg("2. Előveszed a kulcsot és kinyitod az ajtót")
+        printszöveg("3. Tovább mész a nyitott ajtón")
+        válasz = formázott_input("Mit teszel? ")
+
+        if válasz == "1":
+            self.kepvizsgalat()
+        if válasz == "2":
+            self.zartajto()
+        if válasz == "3":
+            self.MegoldasSzoba()
+        
+    def kepvizsgalat(self):
+        printszöveg("Ahogy a képet megmozdítod, egy rejtett szekrényt találsz. A felületén egy összetekeredő kígyó lenyomata rajzolódik ki.")
+        printszöveg("A kígyó szemei halványan felizzanak, majd köd gomolyog körülötte.")
+        printszöveg('„Csak az léphet tovább, aki emlékszik a rúnák által rejtett találóskérdésre.”')
+        self.vizsalat_runa()
+
+    def vizsalat_runa(self):
+        olvas = formázott_input("Elolvastad a rúnaírást? (igen/nem) ")
+        if olvas == "igen":
+            self.runaelolvasva()
+        if olvas == "nem":
+            self.sotetszoba_lehetosegek()
+
+    def runaelolvasva(self):        
+        válasz = formázott_input("Írd be a rúnaszót: ").casefold()
+
+        if válasz == "köd".casefold():
+            printszöveg("A rúnák felizzanak, majd egy kattanás hallatszik. A rejtett szekrény kinyílik!")
+            printszöveg("Belül egy pergament papír található, amin az alábbi szöveg látható.  7 + 3 x 2 = ?")
+            tárgyak.append("Feladvány: 7 + 3 x 2 = ?")
+            self.hetedikszoba()
+        else:
+            printszöveg("Hibás rúnaszó. Próbáld újra.")
+
+        while True:
+            válasz = formázott_input("Írd be a rúnaszót: ").casefold()
+            if válasz == "köd".casefold():
+                printszöveg("A rúnák felizzanak, majd egy csilingelő hang hallatszik. A rejtett szekrény kinyílik!")
+                printszöveg("Belül egy pergament papír található, amin az alábbi szöveg található.  7 + 3 x 2 = ?")
+                tárgyak.append("Feladvány: 7 + 3 x 2 = ?")
+                self.hetedikszoba()
+            else:
+                printszöveg("Hibás rúnaszó!")
+                printszöveg("Elfelejtetted a feladványt vagy nem is olvastad el a rúnaírást???")
+                printszöveg("Büntetésből visszadoblak a rúna megfejtéséhez.")
+                self.runaolvasas()
+        
+    def zartajto(self):
+        printszöveg("A már megtalált kulccsal megpróbálod kinyitni az ajtót és sikerrel jász.")  
+        printszöveg("Belépve a szobába a szoba közepén egy kőtalapzatot látsz rajta egy fém doboz áll.")
+        printszöveg("Közeleb lépve látod meg, hogy egy számkódos lakat zárja le. A dobozon halvány kigyó lenyomat jelenik meg, mint amilyet a kép mögött láttál a szekrény felületén.")
+        printszöveg("Eszedbe jut, hogy a pergamenen egy matematikai feladvány állt. Mi is volt a feldvány?")
+        printszöveg(tárgyak[1])
+        printszöveg("20")
+        printszöveg("12")
+        printszöveg("13")
+        válasz = formázott_input("Írd be a megfelelő számkódot: ")
+
+        if válasz == "13":
+            printszöveg("A lakat kattan egyet, majd leesik a földre. Kinyitod a doboz fedelét és egy különös formájú kulcsot találsz benne. Elteszed a kulcsot és visszatérsz az előző szobába.")
+            tárgyak.append("forma_kulcs")
+            self.hetedikszoba()
+        elif válasz == "20" or "12": 
+            printszöveg("Hibás kódot adtál meg.")
+
+        while True:
+            válasz = formázott_input("Írd be a megfelelő számkódot: ")
+            if válasz == "13":
+                printszöveg("A lakat kattan egyet, majd leesik a földre. Kinyitod a doboz fedelét és egy különös formájú kulcsot találsz benne. Elteszed a kulcsot és visszatérsz az előző szobába.")
+                tárgyak.append("forma_kulcs")
+                self.hetedikszoba()
+            elif válasz == "20" or "12":
+                printszöveg("Hibás kódot adtál meg.")
+                printszöveg("Hirtelen mintha valami megragadna. Majd arra eszmélsz, hogy visszakerültél az előző szobába a képhez")
+                self.kepvizsgalat()
 
 
 jatek = LabirintusJatek()
