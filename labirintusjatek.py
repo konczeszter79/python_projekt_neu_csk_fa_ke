@@ -312,9 +312,14 @@ class LabirintusJatek:
             self.kepvizsgalat()
         if válasz == "2":
             self.zartajto()
-        if válasz == "3":
-            self.MegoldasSzoba()
-        
+        elif válasz == "3":
+            if "formakulcs" in tárgyak:
+                self.MegoldasSzoba()
+            else:
+                printszöveg("Valami nem stimmel… mintha egy kirakós darabja hiányozna. Ideje újra átnézni a többi szobát! Folytatáshoz nyomd meg az Entert")
+            input()
+            self.hetedikszoba()
+
     def kepvizsgalat(self):
         printszöveg("Ahogy a képet megmozdítod, egy rejtett szekrényt találsz. A felületén egy összetekeredő kígyó lenyomata rajzolódik ki.")
         printszöveg("A kígyó szemei halványan felizzanak, majd köd gomolyog körülötte.")
@@ -359,7 +364,7 @@ class LabirintusJatek:
         printszöveg("Belépve a szobába a szoba közepén egy kőtalapzatot látsz rajta egy fém doboz áll.")
         printszöveg("Közeleb lépve látod meg, hogy egy számkódos lakat zárja le. A dobozon halvány kigyó lenyomat jelenik meg, mint amilyet a kép mögött láttál a szekrény felületén.")
         printszöveg("Eszedbe jut, hogy a pergamenen egy matematikai feladvány állt. Mi is volt a feldvány?")
-        printszöveg(tárgyak[5])
+        printszöveg("A zsebedben lévő tárgyak: " + ", ".join(tárgyak))
         printszöveg("20")
         printszöveg("12")
         printszöveg("13")
