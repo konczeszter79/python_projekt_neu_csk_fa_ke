@@ -33,7 +33,7 @@ class LabirintusJatek:
     def __init__(self):
         if not os.path.exists("proba.txt"): 
             m.mentes(1) 
-            print("\n\nÜdvözöllek a kalandban, amelynek során ki kell szabadulnod a gonosz varázsló tornyából, ahova bezárt, hogy az életerődből táplálkozva hajtson végre egy sötét varázslatot. Szobáról szobára kell haladnod, összegyűjteni a kiszabaduláshoz szükséges tárgyakat és információkat. Figyelj jól mindenre! A kaland során minden döntési pontnál több lehetőség közül választhatsz, a döntésedtől függ, hogy mi lesz a következő lépés. A továbblépéshez nyomd meg az Entert.")
+            printszöveg("\n\nÜdvözöllek a kalandban, amelynek során ki kell szabadulnod a gonosz varázsló tornyából, ahova bezárt, hogy az életerődből táplálkozva hajtson végre egy sötét varázslatot. Szobáról szobára kell haladnod, összegyűjteni a kiszabaduláshoz szükséges tárgyakat és információkat. Figyelj jól mindenre! A kaland során minden döntési pontnál több lehetőség közül választhatsz, a döntésedtől függ, hogy mi lesz a következő lépés. A továbblépéshez nyomd meg az Entert.")
             input()
             printszöveg("\n\nLassan térsz magadhoz. Érzed, hogy kőpadlón fekszel. Fáj a fejed. Lassan eszedbe jut, mi történt: az a kedves idegen a kocsmában meghívott több kör sörre. Jókat beszélgetettek a kalandjaitokról. Az még felvillan, hogy elindultál hazafelé, majd egy ütést éreztál a fejtetődön, és sötétség. Kinyitod a szemed. Egy szobát látsz magad körül. Lassan feltápászkodsz és körülnézel. A továbblépéshez nyomd meg az Entert.")
             input()
@@ -398,7 +398,7 @@ class LabirintusJatek:
                 self.noveny()
             elif válasz == '3':
                 self.HaloSzoba()
-            elif válasz == 4:
+            elif válasz == "4":
                 self.hetedikszoba()
             else:
                 printszöveg("\n\nHelytelen választás. Próbáld újra.")
@@ -450,7 +450,7 @@ class LabirintusJatek:
                 self.HaloSzoba()
         else:
                 printszöveg("\n\nHelytelen választás. Próbáld újra.")
-                self.ruhasszekrenyszekreny()
+                self.ruhasszekreny()
 
     def OrosSzoba(self):
             printszöveg("\n\nEgy üres szobába lépsz, amelynek túlsó végén egy aggresszív kinézetű kőszörny áll mozdulatlanul.")        
