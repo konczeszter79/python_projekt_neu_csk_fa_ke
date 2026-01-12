@@ -326,7 +326,7 @@ class LabirintusJatek:
         printszöveg("Belépve a szobába a szoba közepén egy kőtalapzatot látsz rajta egy fém doboz áll.")
         printszöveg("Közeleb lépve látod meg, hogy egy számkódos lakat zárja le. A dobozon halvány kigyó lenyomat jelenik meg, mint amilyet a kép mögött láttál a szekrény felületén.")
         printszöveg("Eszedbe jut, hogy a pergamenen egy matematikai feladvány állt. Mi is volt a feldvány?")
-        printszöveg(tárgyak[1])
+        printszöveg(tárgyak[5])
         printszöveg("20")
         printszöveg("12")
         printszöveg("13")
@@ -334,7 +334,7 @@ class LabirintusJatek:
 
         if válasz == "13":
             printszöveg("A lakat kattan egyet, majd leesik a földre. Kinyitod a doboz fedelét és egy különös formájú kulcsot találsz benne. Elteszed a kulcsot és visszatérsz az előző szobába.")
-            tárgyak.append("forma_kulcs")
+            tárgyak.append("formakulcs")
             self.hetedikszoba()
         elif válasz == "20" or "12": 
             printszöveg("Hibás kódot adtál meg.")
@@ -343,7 +343,7 @@ class LabirintusJatek:
             válasz = formázott_input("Írd be a megfelelő számkódot: ")
             if válasz == "13":
                 printszöveg("A lakat kattan egyet, majd leesik a földre. Kinyitod a doboz fedelét és egy különös formájú kulcsot találsz benne. Elteszed a kulcsot és visszatérsz az előző szobába.")
-                tárgyak.append("forma_kulcs")
+                tárgyak.append("formakulcs")
                 self.hetedikszoba()
             elif válasz == "20" or "12":
                 printszöveg("Hibás kódot adtál meg.")
