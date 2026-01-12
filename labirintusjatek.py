@@ -364,7 +364,7 @@ class LabirintusJatek:
             elif válasz == '3':
                 self.HaloSzoba()
             elif válasz == 4:
-                pass #ide beírni az előző szobát
+                self.hetedikszoba()
             else:
                 printszöveg("\n\nHelytelen választás. Próbáld újra.")
                 self.MegoldasSzoba()
