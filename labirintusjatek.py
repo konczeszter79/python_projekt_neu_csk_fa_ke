@@ -241,7 +241,7 @@ class LabirintusJatek:
         self.sotetszoba()
     
     def kutakodas(self):
-        printszöveg("Ahogy a sötét szobába kutakodsz a szoba közepén belerúgsz valamibe. Kínok között próbálod visszafojtani a feltörő szitkokat. Miután sikerül az önuralmadat visszaszerezni, elkezded végig tapogatni, hogy minek ütköztél neki. Rájössz, hogy egy ládába rúgtál bele. Megpróbálod kinyitni és szerencséd van mert nincs lezárva. A ládát átkutatva egy gömb alakú kristályra akadsz, ami a kezed melegétől fényesen kezd ragyogni. Ahogy a fény beteríti a szobát a falon rúnák válnak láthatóvá és két ajtó rajzolódik ki jobbra és előtted.")
+        printszöveg("Ahogy a sötét szobába kutakodsz a szoba közepén belerúgsz valamibe. Kínok között próbálod visszafojtani a feltörő szitkokat. Miután sikerül az önuralmadat visszaszerezni, elkezded végig tapogatni, hogy minek ütköztél neki. Rájössz, hogy egy ládába rúgtál bele. Megpróbálod kinyitni és szerencséd van mert nincs lezárva. A ládát átkutatva egy gömb alakú kristályra akadsz, ami a kezed melegétől fényesen kezd ragyogni. Ahogy a fény beteríti a szobát a falon rúnák válnak láthatóvá és két ajtó rajzolódik ki jobbra és előtted. A háttad mögött egy kattanást hallasz. Gyorsan hátrafordulsz, hogy megnézd mi az, de csak az előző szobába vezető ajtó zárja kattant. Mi van ha varázsló nyitotta ki és éppen a nyomdban van? De nem jön be senki az ajtón. Megnyugszol egy nagy sóhajt követően.")
         tárgyak.append("fénykristály")
         m.tárgyakfájl(tárgyak)
         self.sotetszoba_lehetosegek()
@@ -250,7 +250,8 @@ class LabirintusJatek:
         printszöveg("1. Elolvasod a rúnákat.")
         printszöveg("2. Előtted lévő ajtó kinyítása.")
         printszöveg("3. Jobb oldali ajtó kinyítása.")
-        válasz = formázott_input("Melyiket választod? (1, 2 vagy 3) ")
+        printszöveg("4. Visszamész az előző szobába.")
+        válasz = formázott_input("Melyiket választod? (1, 2, 3 vagy 4) ")
         
         if válasz == "1":
             self.runaolvasas()
@@ -258,6 +259,8 @@ class LabirintusJatek:
             self.szembeajto()
         elif válasz == "3":
             self.jobbajto()
+        elif válasz == "4":
+            self.ElsoSzoba()
 
     def runaolvasas(self):
         printszöveg("Örülsz, mert a rúna olvasást mindig jobban szeretted az iskolába, mint a latint. Az alábbi szöveg látható a falon: ")
@@ -310,12 +313,15 @@ class LabirintusJatek:
         printszöveg("1. Megvizsgálod a képet")
         printszöveg("2. Előveszed a kulcsot és kinyitod az ajtót")
         printszöveg("3. Tovább mész a nyitott ajtón")
+        printszöveg("4. Visszamész az előző szobába.")
         válasz = formázott_input("Mit teszel? ")
 
         if válasz == "1":
             self.kepvizsgalat()
         if válasz == "2":
             self.zartajto()
+        if válasz == "4":
+            self.sotetszoba()
         elif válasz == "3":
             if "formakulcs" in tárgyak:
                 self.MegoldasSzoba()
@@ -335,6 +341,11 @@ class LabirintusJatek:
         if olvas == "igen":
             self.runaelolvasva()
         if olvas == "nem":
+            printszöveg("A fekete köd hirtelen sűrűsödni kezd körülötted. Gomolygó örvényként kúszik fel a padlóról, majd lassan alakot ölt: hosszú, karcsú test, hidegen villanó szemek… egy kígyó a sötétségből.")
+            printszöveg("A füstkígyó nesztelenül közelebb csúszik, aztán egyetlen villanó mozdulattal rád tekeredik. A szorítása jeges és fullasztó, mintha maga az árnyék markolna. A füled mellett sziszeg:")
+            printszöveg("Ssszisz... Elfelejtetted a feladványt vagy nem is olvastad el a rúnaírást???")
+            printszöveg("A köd egy pillanatra teljesen elnyel, a világ megfordul veled, mintha zuhannál… majd hirtelen kiránt egy ismerős helyre. Ott állsz újra a rúnák előtt, a jelek halványan fénylenek, mintha gúnyolódnának.")
+            printszöveg('A kígyó alakja a levegőben szétfoszlik, de a sziszegése még sokáig ott marad: "Most figyelj. És fejtsd meg."')
             self.sotetszoba_lehetosegek()
 
     def runaelolvasva(self):        
@@ -359,8 +370,11 @@ class LabirintusJatek:
                 self.hetedikszoba()
             else:
                 printszöveg("Hibás rúnaszó!")
-                printszöveg("Elfelejtetted a feladványt vagy nem is olvastad el a rúnaírást???")
-                printszöveg("Büntetésből visszadoblak a rúna megfejtéséhez.")
+                printszöveg("A fekete köd hirtelen sűrűsödni kezd körülötted. Gomolygó örvényként kúszik fel a padlóról, majd lassan alakot ölt: hosszú, karcsú test, hidegen villanó szemek… egy kígyó a sötétségből.")
+                printszöveg("A füstkígyó nesztelenül közelebb csúszik, aztán egyetlen villanó mozdulattal rád tekeredik. A szorítása jeges és fullasztó, mintha maga az árnyék markolna. A füled mellett sziszeg:")
+                printszöveg("Ssszisz... Elfelejtetted a feladványt vagy nem is olvastad el a rúnaírást???")
+                printszöveg("A köd egy pillanatra teljesen elnyel, a világ megfordul veled, mintha zuhannál… majd hirtelen kiránt egy ismerős helyre. Ott állsz újra a rúnák előtt, a jelek halványan fénylenek, mintha gúnyolódnának.")
+                printszöveg('A kígyó alakja a levegőben szétfoszlik, de a sziszegése még sokáig ott marad: "Most figyelj. És fejtsd meg."')
                 self.runaolvasas()
         
     def zartajto(self):
@@ -369,7 +383,7 @@ class LabirintusJatek:
         printszöveg("Belépve a szobába a szoba közepén egy kőtalapzatot látsz rajta egy fém doboz áll.")
         printszöveg("Közeleb lépve látod meg, hogy egy számkódos lakat zárja le. A dobozon halvány kigyó lenyomat jelenik meg, mint amilyet a kép mögött láttál a szekrény felületén.")
         printszöveg("Eszedbe jut, hogy a pergamenen egy matematikai feladvány állt. Mi is volt a feldvány?")
-        printszöveg("A zsebedben lévő tárgyak: " + ", ".join(tárgyak))
+        printszöveg("A zsebed súlya emlékeztet rá: amit egyszer elvettél, az még mindig a tiéd. A megoldás közelebb van, mint gondolnád… csak nyúlj érte. " + ", ".join(tárgyak))
         printszöveg("20")
         printszöveg("12")
         printszöveg("13")
