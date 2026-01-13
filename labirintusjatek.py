@@ -124,6 +124,7 @@ class LabirintusJatek:
             
             
     def vilagos(self):
+        m.mentes(2) 
         printszöveg("\n\n Belépsz a világos szobába. A falon díszes tapéta, tájképek, de bútorok nincsenek, csak egy lovagi páncél áll az egyik sarokban.")
         printszöveg("\n\n1. Megnézed a péncélt.")
         printszöveg("\n\n2. Benyitsz az előre vezető ajtón.")
@@ -149,6 +150,7 @@ class LabirintusJatek:
         self.vilagos()
 
     def elore(self):
+        m.mentes(3) 
         printszöveg("\n\nA szobában ahol vagy több tárgy és bútor is található. Az ajtóval szemben lévő falon egy komód áll, balra egy ládát látsz, jobbra egy ruhásszekrény.")
         printszöveg("\n\n1. Megnézed a  ruhásszekrényt.")
         printszöveg("\n\n2. Megnézed a komódot.")
@@ -215,6 +217,7 @@ class LabirintusJatek:
             self.lada()
 
     def kovszakasz(self):
+        m.mentes(4) 
         printszöveg("Miután nem volt más választásod a sötét szobába léptél be. Az előző szobából beáradó fény alig világítja meg a szobát az egyik falon halványan felsejlik valami, de amint teljesen átlépsz a szobába a mögötted lévő ajtó becsukódik és nem tudod kinyitni. Ahhoz, hogy megtaláld a kiutat szükséged van fényforrásra.")
         self.sotetszoba()
     def sotetszoba(self):
@@ -297,6 +300,7 @@ class LabirintusJatek:
         self.sotetszoba_lehetosegek()    
 
     def jobbajto(self):
+        m.mentes(5) 
         printszöveg("Belépsz a szobába, amelyet halvány mágikus fényvilág tölt be. ")
         printszöveg("Két ajtót látsz: Az egyik zárva van, rajta egy nagy vaslakat. A másik ajtó lassan hangos nyikorgással kitárul.")
         printszöveg("Mögötte a semmi… vagy valami sokkal rosszabb, de úgy tűnik, ez vezet tovább. A szobába észreveszel egy képet, ami mintha furcsán állna.")
@@ -360,6 +364,7 @@ class LabirintusJatek:
                 self.runaolvasas()
         
     def zartajto(self):
+        m.mentes(6) 
         printszöveg("A már megtalált kulccsal megpróbálod kinyitni az ajtót és sikerrel jász.")  
         printszöveg("Belépve a szobába a szoba közepén egy kőtalapzatot látsz rajta egy fém doboz áll.")
         printszöveg("Közeleb lépve látod meg, hogy egy számkódos lakat zárja le. A dobozon halvány kigyó lenyomat jelenik meg, mint amilyet a kép mögött láttál a szekrény felületén.")
@@ -390,6 +395,7 @@ class LabirintusJatek:
                 printszöveg("Hirtelen mintha valami megragadna. Majd arra eszmélsz, hogy visszakerültél az előző szobába a képhez")
                 self.kepvizsgalat()
     def MegoldasSzoba(self):
+            m.mentes(7) 
             printszöveg("\n\nEgy sötét folyosón találod magad, amelyet csak az előző szobából áradó fény világít meg. A túlsó végén egyetlen ajtó áll. A falon egy festmény lóg, amely a gonosz varázslót ábrázolja. az ajtó mellett egy fonnyadt szobanövény árválkodik.")        
             printszöveg("\n\n1. Megvizsgálod a festményt")
             printszöveg("\n\n2. Megvizsgálod a szobanövényt")
@@ -420,6 +426,7 @@ class LabirintusJatek:
         self.MegoldasSzoba()
 
     def HaloSzoba(self):
+            m.mentes(8) 
             printszöveg("\n\nEgy hálószobába lépsz, feltehetőleg abba amiben a gonosz varázsló maga alszik. a fal mellett egy baldachinos ágyat látsz, rajta egy kupac párnával és meglehetősen ronda plüssállatokkal, amelyek feltehetőleg azokat entitásokat ábrázolják, amelyeknek fogvatartód feláldozni készült téged. s szoba túlsó felén egy öltözőasztal és ruhásszekrény áll.")        
             printszöveg("\n\n1. Megvizsgálod az ágyat")
             printszöveg("\n\n2. Megvizsgálod a ruhásszekrényt")
@@ -495,10 +502,10 @@ class LabirintusJatek:
         printszöveg("Az ajtón átlépve friss levegőt érzel, és kora nyári esti napfény süti az arcod. Kijutottál a toronyból!")
         válasz = formázott_input("\n1.Elfutsz a naplementébe\n2.Győzedelmesen felmutatod a középső ujjad a torony felé, majd elfutsz a naplementébe\n")
 
-        if válasz == True:
+        if válasz in ("1", "2"): 
             printszöveg("Szabad vagy!\nVége a játéknak!")
-
+        input("\nNyomj Entert a kilépéshez...")
         os.remove("proba.txt")
-        exit
+        exit()
 
 jatek = LabirintusJatek()
