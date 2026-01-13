@@ -31,7 +31,16 @@ def formázott_input(szoveg, margo=4):
 
 class LabirintusJatek:
     def __init__(self):
-        if not os.path.exists("proba.txt"): 
+        if not os.path.exists("targyak.txt"):
+            with open("targyak.txt","w") as fájl:
+                print("Zsebed tartalma:\n", file=fájl)
+        else:
+            with open("targyak.txt") as fájl:
+                sor = fájl.readline().strip()
+                while sor != "":
+                    tárgyak.append(sor)
+                    sor = fájl.readline().strip()
+        if not os.path.exists("jatekallas.txt"): 
             m.mentes(1) 
             printszöveg("\n\nÜdvözöllek a kalandban, amelynek során ki kell szabadulnod a gonosz varázsló tornyából, ahova bezárt, hogy az életerődből táplálkozva hajtson végre egy sötét varázslatot. Szobáról szobára kell haladnod, összegyűjteni a kiszabaduláshoz szükséges tárgyakat és információkat. Figyelj jól mindenre! A kaland során minden döntési pontnál több lehetőség közül választhatsz, a döntésedtől függ, hogy mi lesz a következő lépés. A továbblépéshez nyomd meg az Entert.")
             input()
@@ -40,7 +49,7 @@ class LabirintusJatek:
             self.ElsoSzoba()
 
         else:
-            with open("proba.txt", "r") as fájl:   
+            with open("jatekallas.txt", "r") as fájl:   
                 szobaszamok = int(fájl.read()) 
                 if szobaszamok == 1: 
                     self.ElsoSzoba()
@@ -126,7 +135,7 @@ class LabirintusJatek:
     def vilagos(self):
         m.mentes(2) 
         printszöveg("\n\n Belépsz a világos szobába. A falon díszes tapéta, tájképek, de bútorok nincsenek, csak egy lovagi páncél áll az egyik sarokban.")
-        printszöveg("\n\n1. Megnézed a péncélt.")
+        printszöveg("\n\n1. Megnézed a páncélt.")
         printszöveg("\n\n2. Benyitsz az előre vezető ajtón.")
         printszöveg("\n\n3. Benyitsz a jobbra nyíló ajtón.")
         printszöveg("\n\n4. Átmégy a pergamenes szobába.")
@@ -429,9 +438,9 @@ class LabirintusJatek:
                 printszöveg("\n\nHelytelen választás. Próbáld újra.")
                 self.MegoldasSzoba()
     def onarckep(self):
-            printszöveg("\n\nA festmény egy díszes keretbe van foglalva, ám erősen amatőr munka. Gyanítod, hogy önarckép. Megfordítod, és észreveszed, hogy a hátuljára a következő szám van firkálva: 172. Ez később még hasznos lehet!")  
+            printszöveg("\n\nA festmény egy díszes keretbe van foglalva, ám erősen amatőr munka. Gyanítod, hogy önarckép. Megfordítod, és észreveszed, hogy a hátuljára a következő szám van firkálva: 172. Ez később még hasznos lehet! Le is írod egy papírfecnire")  
             formázott_input("\n\nNyomj entert a viszatéréshez a szobába")  
-            tárgyak.append("172")
+            tárgyak.append("papírfecni: 172")
             m.tárgyakfájl(tárgyak)
             self.MegoldasSzoba()
     def noveny(self):
@@ -479,6 +488,7 @@ class LabirintusJatek:
                 self.ruhasszekreny()
 
     def OrosSzoba(self):
+            m.mentes(9)
             printszöveg("\n\nEgy üres szobába lépsz, amelynek túlsó végén egy aggresszív kinézetű kőszörny áll mozdulatlanul.")        
             printszöveg("\n\n1. Megközelíted a szörnyet")
             printszöveg("\n\n2. Visszamész az előző szobába")
@@ -496,7 +506,7 @@ class LabirintusJatek:
         printszöveg("\n\nA szörny életre kel, és mennydörgő hangon így szól:\n'Egy hajó 200 km/órás sebességgel száguld a tengeren. Legénysége 30 fő, ebből 10 tengeri szörny, 5 gyíkember. A hajó színe kék. Hány éves a kapitány?'")        
         printszöveg("\n\n1. Ööh, 53?")
         printszöveg("\n\n2. Mi?")
-        if "172" in tárgyak:
+        if "papírfecni: 172" in tárgyak:
             printszöveg("\n\n3. 172!")
         válasz = formázott_input("\n\nMelyiket választod? (1, 2, vagy 3)")     
 
@@ -504,7 +514,7 @@ class LabirintusJatek:
             printszöveg("Helytelen válasz! - mennydörgi a kőszörny, majd felkap és áthajít az ajtón amin bejöttél, kereszülbucskáztatva a szekrénnyi köpönyegen. Nézz körül jobban a labirintusban hogy megtaláld a helyes választ!")
             formázott_input("Nyomj entert a feltápászkodáshoz.")
             self.HaloSzoba()
-        elif válasz == '3' and "172" in tárgyak:
+        elif válasz == '3' and "papírfecni: 172" in tárgyak:
             printszöveg("Helyes válasz! - mennydörgi a kőszörny, majd félreáll, felfedve egy ajtót amely kinyílik amint közelebb érsz. Átlépsz rajta.")
             formázott_input("Nyomj entert a folytatáshoz.")
             self.kijarat()
@@ -519,7 +529,8 @@ class LabirintusJatek:
         if válasz in ("1", "2"): 
             printszöveg("Szabad vagy!\nVége a játéknak!")
         input("\nNyomj Entert a kilépéshez...")
-        os.remove("proba.txt")
+        os.remove("jatekallas.txt")
+        os.remove("targyak.txt")
         exit()
 
 jatek = LabirintusJatek()

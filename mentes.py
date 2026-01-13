@@ -1,5 +1,5 @@
 def mentes(j):
-        with open("proba.txt","w") as fájl:
+        with open("jatekallas.txt","w") as fájl:
             print(j, file=fájl)
 
 def tárgyakfájl(targy):
